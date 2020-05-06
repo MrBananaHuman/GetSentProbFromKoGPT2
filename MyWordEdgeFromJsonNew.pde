@@ -30,7 +30,6 @@ ArrayList<ArrayList<WordNode>> makeWordRandomNodes(String json, String personaTy
     for (int j = 0; j < utterences.size(); j++) {
       JSONObject utterencesObj = parseJSONObject(utterences.get(j).toString());
       String label = utterencesObj.getString("vocab_text");
-      label = label.replace("▁", "");
       if (label.equals("")) {
         label = "\" \"";
       }
@@ -51,7 +50,7 @@ ArrayList<ArrayList<WordNode>> makeWordRandomNodes(String json, String personaTy
       max_rank = rank + 1;
     }
     for (int k = 0; k < 15 - utterences.size(); k++) {
-      String randLabel = vocabs.get(int(random(0, vocabs.size()-1))).replace("▁", "");
+      String randLabel = vocabs.get(int(random(0, vocabs.size()-1)));
       WordNode wordNode = new WordNode(randLabel, tokenId, max_rank, 0.001, 2);
       innerResult.add(wordNode);
       max_rank += 1;
